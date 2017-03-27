@@ -7,12 +7,12 @@ import java.util.UUID;
 /**
  * Entidad Categoría
  */
-public class Category {
+public class Type {
     private String id;
     private String name;
     private String pictureUrl;
 
-    public Category(String name, String pictureUrl) {
+    public Type(String name, String pictureUrl) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.pictureUrl = pictureUrl;
@@ -33,9 +33,9 @@ public class Category {
     public ContentValues toContentValues() {
         ContentValues values = new ContentValues();
 
-        values.put(CategoryContract.CategoryEntry.ID, id);
-        values.put(CategoryContract.CategoryEntry.NAME, name);
-        values.put(CategoryContract.CategoryEntry.PICTUREURL, pictureUrl);
+        values.put(TypeContract.TypeyEntry.ID, id);
+        values.put(TypeContract.TypeyEntry.NAME, name);
+        values.put(TypeContract.TypeyEntry.PICTUREURL, pictureUrl);
 
         return values;
     }

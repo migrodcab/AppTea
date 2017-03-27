@@ -8,17 +8,17 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.example.hp.apptea.data.AdapterCategory;
-import com.example.hp.apptea.data.Category;
-import com.example.hp.apptea.data.CategoryRepo;
+import com.example.hp.apptea.data.AdapterType;
+import com.example.hp.apptea.data.Type;
+import com.example.hp.apptea.data.TypeRepo;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener  {
 
-    private CategoryRepo categoryRepo = new CategoryRepo(this);
+    private TypeRepo typeRepo = new TypeRepo(this);
 
-    private ArrayList<Category> categories = new ArrayList<Category>();
+    private ArrayList<Type> types = new ArrayList<Type>();
     private Button simbolos;
     private Button texto;
     private Button prueba;
@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         ListView lv = (ListView) findViewById(R.id.list1);
 
-        categories = categoryRepo.getCategories();
+        types = typeRepo.getTypes();
 
-        AdapterCategory adapter = new AdapterCategory(this, categories);
+        AdapterType adapter = new AdapterType(this, types);
 
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(this);
@@ -43,9 +43,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         String text;
         Intent i;
 
-        Category category = (Category) parent.getItemAtPosition(position);
+        Type type = (Type) parent.getItemAtPosition(position);
         i = new Intent(this, Menu.class );
-        text = category.getName();
+        text = type.getName();
         i.putExtra("text", text);
 
         startActivity(i);
