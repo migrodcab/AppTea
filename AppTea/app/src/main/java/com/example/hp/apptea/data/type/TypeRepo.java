@@ -1,8 +1,10 @@
-package com.example.hp.apptea.data;
+package com.example.hp.apptea.data.type;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.example.hp.apptea.data.AppTeaDbHelper;
 
 import java.util.ArrayList;
 
@@ -27,11 +29,12 @@ public class TypeRepo {
         if (cursor.moveToFirst()) {
             do {
                 Type type;
-                String name, picture;
+                String id, name, picture;
 
+                id = cursor.getString(cursor.getColumnIndex("id"));
                 name = cursor.getString(cursor.getColumnIndex("name"));
                 picture = cursor.getString(cursor.getColumnIndex("pictureUrl"));
-                type = new Type(name, picture);
+                type = new Type(id, name, picture);
 
                 types.add(type);
 

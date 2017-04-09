@@ -1,12 +1,9 @@
-package com.example.hp.apptea.data;
+package com.example.hp.apptea.data.type;
 
 import android.content.ContentValues;
 
 import java.util.UUID;
 
-/**
- * Entidad Categoría
- */
 public class Type {
     private String id;
     private String name;
@@ -14,6 +11,12 @@ public class Type {
 
     public Type(String name, String pictureUrl) {
         this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.pictureUrl = pictureUrl;
+    }
+
+    public Type(String id, String name, String pictureUrl) {
+        this.id = id;
         this.name = name;
         this.pictureUrl = pictureUrl;
     }

@@ -1,4 +1,4 @@
-package com.example.hp.apptea.data;
+package com.example.hp.apptea.data.category;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hp.apptea.R;
+import com.example.hp.apptea.data.type.Type;
 import com.example.hp.apptea.utils.ImageMethods;
 
 import java.util.ArrayList;
@@ -17,23 +18,23 @@ import java.util.ArrayList;
 /**
  * Created by HP on 16/03/2017.
  */
-public class AdapterType extends BaseAdapter {
+public class AdapterCategory extends BaseAdapter {
     protected Activity activity;
-    protected ArrayList<Type> types;
+    protected ArrayList<Category> categories;
 
-    public AdapterType(Activity activity, ArrayList<Type> types) {
+    public AdapterCategory(Activity activity, ArrayList<Category> categories) {
         this.activity = activity;
-        this.types = types;
+        this.categories = categories;
     }
 
     @Override
     public int getCount() {
-        return types.size();
+        return categories.size();
     }
 
     @Override
     public Object getItem(int arg0) {
-        return types.get(arg0);
+        return categories.get(arg0);
     }
 
     @Override
@@ -42,15 +43,15 @@ public class AdapterType extends BaseAdapter {
     }
 
     public void clear() {
-        types.clear();
+        categories.clear();
     }
 
 
-    public Object getType(int arg0) {
-        return types.get(arg0);
+    public Object getCategory(int arg0) {
+        return categories.get(arg0);
     }
 
-    public long getTypeId(int position) {
+    public long getCategoryId(int position) {
         return position;
     }
 
@@ -64,7 +65,7 @@ public class AdapterType extends BaseAdapter {
             v = inf.inflate(R.layout.item_category, null);
         }
 
-        Type dir = types.get(position);
+        Category dir = categories.get(position);
 
         TextView title = (TextView) v.findViewById(R.id.category);
         title.setText(dir.getName());

@@ -7,10 +7,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.example.hp.apptea.data.AdapterType;
-import com.example.hp.apptea.data.Type;
-import com.example.hp.apptea.data.TypeRepo;
+import com.example.hp.apptea.data.type.AdapterType;
+import com.example.hp.apptea.data.type.Type;
+import com.example.hp.apptea.data.type.TypeRepo;
 
 import java.util.ArrayList;
 
@@ -19,9 +20,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private TypeRepo typeRepo = new TypeRepo(this);
 
     private ArrayList<Type> types = new ArrayList<Type>();
-    private Button simbolos;
-    private Button texto;
-    private Button prueba;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,52 +38,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String text;
+        String typeId;
         Intent i;
 
         Type type = (Type) parent.getItemAtPosition(position);
-        i = new Intent(this, Menu.class );
-        text = type.getName();
-        i.putExtra("text", text);
+        i = new Intent(this, Menu.class);
+        typeId = type.getId().toString();
+
+        i.putExtra("typeId", typeId);
 
         startActivity(i);
     }
-
-    /*public void cargaMenuSimbolos(View view) {
-        String text;
-        Intent i;
-
-        i = new Intent(this, Menu.class );
-        text = simbolos.getText().toString();
-
-        i.putExtra("text", text);
-
-        startActivity(i);
-    }
-
-    public void cargaMenuTexto(View view) {
-        String text;
-        Intent i;
-
-        i = new Intent(this, Menu.class );
-        text = texto.getText().toString();
-
-        i.putExtra("text", text);
-
-        startActivity(i);
-    }
-
-    public void cargaMenuPrueba(View view) {
-        String text;
-        Intent i;
-
-        i = new Intent(this, Menu.class );
-        text = prueba.getText().toString();
-
-        i.putExtra("text", text);
-
-        startActivity(i);
-    }*/
-
-
 }

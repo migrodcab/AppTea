@@ -1,4 +1,4 @@
-package com.example.hp.apptea.data;
+package com.example.hp.apptea.data.type;
 
 import android.provider.BaseColumns;
 

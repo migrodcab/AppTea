@@ -1,5 +1,6 @@
 package com.example.hp.apptea;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,10 +19,22 @@ public class Menu extends AppCompatActivity {
         TextView text = (TextView) findViewById(R.id.textView);
 
         Bundle bundle = getIntent().getExtras();
-        String dato=bundle.getString("text");
+        String typeId=bundle.getString("typeId");
 
-        text.setText(dato);
+        text.setText(typeId);
+    }
 
+    public void cargaComunicacion(View view) {
+        TextView text = (TextView) findViewById(R.id.textView);
+        String typeId;
+        Intent i;
+
+        i = new Intent(this, CategoryActivity.class );
+        typeId = text.getText().toString();
+
+        i.putExtra("typeId", typeId);
+
+        startActivity(i);
     }
 
 
