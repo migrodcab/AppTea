@@ -21,7 +21,7 @@ public class CategoryRepo {
 
     public ArrayList<Category> getCategoriesByTypeId(String typeId) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery = "Select * From Item c where c.type_id = '" + typeId+"'";
+        String selectQuery = "Select * From Category c where c.type_id = '" + typeId+"'";
 
         ArrayList<Category> categories = new ArrayList<Category>();
 
