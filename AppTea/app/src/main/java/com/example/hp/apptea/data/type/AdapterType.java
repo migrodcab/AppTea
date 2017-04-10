@@ -2,6 +2,10 @@ package com.example.hp.apptea.data.type;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +13,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.hp.apptea.R;
 import com.example.hp.apptea.utils.ImageMethods;
 
@@ -69,8 +75,20 @@ public class AdapterType extends BaseAdapter {
         TextView title = (TextView) v.findViewById(R.id.type);
         title.setText(dir.getName());
 
-        ImageView image = (ImageView) v.findViewById(R.id.imageView);
-        new ImageMethods().loadImageUrl(image, dir.getPictureUrl());
+        final ImageView image = (ImageView) v.findViewById(R.id.imageView);
+        Glide
+                .with(activity)
+                .load(Uri.parse("file:///android_asset/" + dir.getPictureUrl()))
+                .asBitmap()
+                .centerCrop()
+                .into(new BitmapImageViewTarget(image) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable drawable
+                                = RoundedBitmapDrawableFactory.create(activity.getResources(), resource);
+                        image.setImageDrawable(drawable);
+                    }
+                });
 
         return v;
     }

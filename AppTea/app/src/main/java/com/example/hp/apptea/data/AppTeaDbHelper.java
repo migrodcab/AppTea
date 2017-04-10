@@ -45,13 +45,13 @@ public class AppTeaDbHelper extends SQLiteOpenHelper {
     }
 
     private void populate(SQLiteDatabase sqLiteDatabase) {
-        addType(sqLiteDatabase, new Type("1", "Texto", "http://www.elecodevaldepenas.es/images/showid/672374"));
-        addType(sqLiteDatabase, new Type("2","Dibujos", "https://s-media-cache-ak0.pinimg.com/564x/50/36/ca/5036ca976650c1fb8c7c74a01a41d6c5.jpg"));
-        addType(sqLiteDatabase, new Type("3","Imagen", "http://www.cruceroclick.com/admin/archivos/Image/PAISAJES/POLINESIA/Tranquil_Lagoon_Bora_Bora_Island_French_Polynesia.jpg"));
+        addType(sqLiteDatabase, new Type("1", "Texto", "palabras.jpeg"));
+        addType(sqLiteDatabase, new Type("2","Dibujos", "dibujos.jpg"));
+        addType(sqLiteDatabase, new Type("3","Imagen", "imagen.jpg"));
 
-        addCategory(sqLiteDatabase,"4", "Colegio", "http://www.tribunadelamoraleja.com/fotos/3/sanpa.jpg", "3");
-        addCategory(sqLiteDatabase,"5", "Familia", "http://conceptodefinicion.de/wp-content/uploads/2014/07/Familia.jpg", "3");
-        addCategory(sqLiteDatabase,"6", "Casa", "http://www.canexel.es/wp-content/uploads/2015/06/casa-de-madera-logrono.jpg", "3");
+        addCategory(sqLiteDatabase,"4", "Colegio", "colegio.jpg", "3");
+        addCategory(sqLiteDatabase,"5", "Familia", "familia.jpg", "3");
+        addCategory(sqLiteDatabase,"6", "Casa", "casa.jpg", "3");
     }
 
     public long addType(SQLiteDatabase db, Type type) {
