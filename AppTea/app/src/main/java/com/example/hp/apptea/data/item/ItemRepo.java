@@ -1,50 +1,49 @@
-package com.example.hp.apptea.data.category;
+package com.example.hp.apptea.data.item;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.hp.apptea.data.AppTeaDbHelper;
-import com.example.hp.apptea.data.type.Type;
 
 import java.util.ArrayList;
 
 /**
  * Created by HP on 14/03/2017.
  */
-public class CategoryRepo {
+public class ItemRepo {
     private AppTeaDbHelper dbHelper;
 
-    public CategoryRepo(Context context) {
+    public ItemRepo(Context context) {
         dbHelper = new AppTeaDbHelper(context);
     }
 
-    public ArrayList<Category> getCategoriesByTypeId(String typeId) {
+    public ArrayList<Item> getItemsByCategoryId(String categoryId) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery = "Select * From Item c where c.type_id = '" + typeId+"'";
+        String selectQuery = "Select * From Item i where i.category_id = '" + categoryId+"'";
 
-        ArrayList<Category> categories = new ArrayList<Category>();
+        ArrayList<Item> items = new ArrayList<Item>();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
             do {
-                Category category;
+                Item item;
                 String id, name, picture;
 
                 id = cursor.getString(cursor.getColumnIndex("id"));
                 name = cursor.getString(cursor.getColumnIndex("name"));
                 picture = cursor.getString(cursor.getColumnIndex("pictureUrl"));
-                category = new Category(id, name, picture, typeId);
+                item = new Item(id, name, picture, categoryId);
 
-                categories.add(category);
+                items.add(item);
 
             } while (cursor.moveToNext());
         }
 
         cursor.close();
         db.close();
-        return categories;
+        return items;
 
     }
 }

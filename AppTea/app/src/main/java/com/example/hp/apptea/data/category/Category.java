@@ -13,7 +13,7 @@ public class Category {
     private String pictureUrl;
     private String typeId;
 
-    /*public Category(String name, String pictureUrl, String typeId) {
+    /*public Item(String name, String pictureUrl, String typeId) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.pictureUrl = pictureUrl;

@@ -14,11 +14,12 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <item android:name="android.intent.item.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Menu" />
-        <activity android:name=".CategoryActivity"></activity>
+        <activity android:name=".CategoryActivity" />
+        <activity android:name=".ItemActivity"></activity>
     </application>
 
 </manifest>
