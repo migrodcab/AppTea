@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AppTea</string>
+    <string name="action_edit">Editar</string>
+    <string name="action_delete">Borrar</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_settings">Ajustes</string>
 </resources>

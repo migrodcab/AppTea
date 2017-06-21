@@ -10,19 +10,14 @@ import java.util.UUID;
 public class Category {
     private String id;
     private String name;
+    private int relevance;
     private String pictureUrl;
     private String typeId;
 
-    /*public Item(String name, String pictureUrl, String typeId) {
-        this.id = UUID.randomUUID().toString();
-        this.name = name;
-        this.pictureUrl = pictureUrl;
-        this.typeId = typeId;
-    }*/
-
-    public Category(String id, String name, String pictureUrl, String typeId) {
+    public Category(String id, String name, int relevance, String pictureUrl, String typeId) {
         this.id = id;
         this.name = name;
+        this.relevance = relevance;
         this.pictureUrl = pictureUrl;
         this.typeId = typeId;
     }
@@ -39,6 +34,8 @@ public class Category {
         return pictureUrl;
     }
 
+    public int getRelevance() { return relevance; }
+
     public String getTypeId() {
         return typeId;
     }
@@ -48,6 +45,7 @@ public class Category {
 
         values.put(CategoryContract.CategoryEntry.ID, id);
         values.put(CategoryContract.CategoryEntry.NAME, name);
+        values.put(CategoryContract.CategoryEntry.RELEVANCE, relevance);
         values.put(CategoryContract.CategoryEntry.PICTUREURL, pictureUrl);
         values.put(CategoryContract.CategoryEntry.TYPE_ID, typeId);
 

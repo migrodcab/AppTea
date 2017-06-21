@@ -13,6 +13,7 @@ public class CategoryContract {
 
         public static final String ID = "id";
         public static final String NAME = "name";
+        public static final String RELEVANCE = "relevance";
         public static final String PICTUREURL = "pictureUrl";
         public static final String TYPE_ID = "type_id";
     }

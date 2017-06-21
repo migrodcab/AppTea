@@ -17,7 +17,7 @@
                 <item android:name="android.intent.item.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Menu" />
+        <activity android:name=".Actions" />
         <activity android:name=".CategoryActivity" />
         <activity android:name=".ItemActivity"></activity>
     </application>

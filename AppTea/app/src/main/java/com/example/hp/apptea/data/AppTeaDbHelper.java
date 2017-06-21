@@ -30,18 +30,24 @@ public class AppTeaDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE Category ("
                 + CategoryContract.CategoryEntry.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + CategoryContract.CategoryEntry.NAME + " TEXT NOT NULL,"
+                + CategoryContract.CategoryEntry.RELEVANCE + " INTEGER,"
                 + CategoryContract.CategoryEntry.PICTUREURL + " TEXT,"
                 + CategoryContract.CategoryEntry.TYPE_ID + " INTEGER,"
                 + "FOREIGN KEY("+CategoryContract.CategoryEntry.TYPE_ID+") REFERENCES Type("+TypeContract.TypeyEntry.ID+"),"
-                + "UNIQUE (" + CategoryContract.CategoryEntry.ID + "))");
+                + "UNIQUE (" + CategoryContract.CategoryEntry.ID + "),"
+                + "CONSTRAINT " + CategoryContract.CategoryEntry.RELEVANCE + "_Ck CHECK (" + CategoryContract.CategoryEntry.RELEVANCE
+                + " IN (1,2,3,4,5,6,7,8,9,10)))");
 
         sqLiteDatabase.execSQL("CREATE TABLE Item ("
                 + ItemContract.ItemEntry.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + ItemContract.ItemEntry.NAME + " TEXT NOT NULL,"
+                + ItemContract.ItemEntry.RELEVANCE + " INTEGER,"
                 + ItemContract.ItemEntry.PICTUREURL + " TEXT,"
                 + ItemContract.ItemEntry.CATEGORY_ID + " INTEGER,"
-                + "FOREIGN KEY("+ItemContract.ItemEntry.CATEGORY_ID+") REFERENCES Type("+CategoryContract.CategoryEntry.ID+"),"
-                + "UNIQUE (" + ItemContract.ItemEntry.ID + "))");
+                + "FOREIGN KEY("+ItemContract.ItemEntry.CATEGORY_ID+") REFERENCES Type("+ItemContract.ItemEntry.ID+"),"
+                + "UNIQUE (" + ItemContract.ItemEntry.ID + "),"
+                + "CONSTRAINT " + ItemContract.ItemEntry.RELEVANCE + "_Ck CHECK (" + ItemContract.ItemEntry.RELEVANCE
+                + " IN (1,2,3,4,5,6,7,8,9,10)))");
 
         populate(sqLiteDatabase);
     }
@@ -59,13 +65,13 @@ public class AppTeaDbHelper extends SQLiteOpenHelper {
         addType(sqLiteDatabase, new Type("2","Dibujos", "dibujos.jpg"));
         addType(sqLiteDatabase, new Type("3","Imagen", "imagen.jpg"));
 
-        addCategory(sqLiteDatabase,"4", "Colegio", "colegio.jpg", "3");
-        addCategory(sqLiteDatabase,"5", "Familia", "familia.jpg", "3");
-        addCategory(sqLiteDatabase,"6", "Casa", "casa.jpg", "3");
+        addCategory(sqLiteDatabase,"4", "Colegio", 9 , "colegio.jpg", "3");
+        addCategory(sqLiteDatabase,"5", "Familia", 10 , "familia.jpg", "3");
+        addCategory(sqLiteDatabase,"6", "Casa", 8 , "casa.jpg", "3");
 
-        addItem(sqLiteDatabase,"7", "Pizarra", "pizarra.jpg", "4");
-        addItem(sqLiteDatabase,"8", "Pupitre", "pupitre.jpg", "4");
-        addItem(sqLiteDatabase,"9", "Estuche", "estuche.jpg", "4");
+        addItem(sqLiteDatabase,"7", "Pizarra", 8, "pizarra.jpg", "4");
+        addItem(sqLiteDatabase,"8", "Pupitre", 2, "pupitre.jpg", "4");
+        addItem(sqLiteDatabase,"9", "Estuche", 4, "estuche.jpg", "4");
     }
 
     public long addType(SQLiteDatabase db, Type type) {
@@ -75,11 +81,11 @@ public class AppTeaDbHelper extends SQLiteOpenHelper {
                 type.toContentValues());
     }
 
-    public void addCategory(SQLiteDatabase db, String id, String name, String url, String typeId) {
-        db.execSQL("INSERT INTO Category (id, name, pictureUrl, type_id) VALUES('"+id+"', '"+name+"', '"+url+"', '"+typeId+"')");
+    public void addCategory(SQLiteDatabase db, String id, String name, int relevance, String url, String typeId) {
+        db.execSQL("INSERT INTO Category (id, name, relevance, pictureUrl, type_id) VALUES('"+id+"', '"+name+"', "+relevance+", '"+ url+"', '"+typeId+"')");
     }
 
-    public void addItem(SQLiteDatabase db, String id, String name, String url, String categoryId) {
-        db.execSQL("INSERT INTO Item (id, name, pictureUrl, category_id) VALUES('"+id+"', '"+name+"', '"+url+"', '"+categoryId+"')");
+    public void addItem(SQLiteDatabase db, String id, String name, int relevance, String url, String categoryId) {
+        db.execSQL("INSERT INTO Item (id, name, relevance, pictureUrl, category_id) VALUES('"+id+"', '"+name+"', "+relevance+", '"+ url+"', '"+categoryId+"')");
     }
 }

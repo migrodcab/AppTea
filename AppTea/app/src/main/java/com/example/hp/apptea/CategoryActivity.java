@@ -3,6 +3,9 @@ package com.example.hp.apptea;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -10,8 +13,6 @@ import android.widget.ListView;
 import com.example.hp.apptea.data.category.AdapterCategory;
 import com.example.hp.apptea.data.category.Category;
 import com.example.hp.apptea.data.category.CategoryRepo;
-import com.example.hp.apptea.data.type.AdapterType;
-import com.example.hp.apptea.data.type.Type;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,8 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
 
         Bundle bundle = getIntent().getExtras();
         String typeId=bundle.getString("typeId");
+
+        setTitle("Comunicación");
 
         categories = categoryRepo.getCategoriesByTypeId(typeId);
 
@@ -51,5 +54,14 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
         i.putExtra("categoryId", categoryId);
 
         startActivity(i);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the actions items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_activity_actions, menu);
+
+        return super.onCreateOptionsMenu(menu);
     }
 }

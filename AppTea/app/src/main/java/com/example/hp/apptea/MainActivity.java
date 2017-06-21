@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Intent i;
 
         Type type = (Type) parent.getItemAtPosition(position);
-        i = new Intent(this, Menu.class);
+        i = new Intent(this, Actions.class);
         typeId = type.getId().toString();
 
         i.putExtra("typeId", typeId);

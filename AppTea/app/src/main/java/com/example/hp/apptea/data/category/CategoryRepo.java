@@ -21,7 +21,7 @@ public class CategoryRepo {
 
     public ArrayList<Category> getCategoriesByTypeId(String typeId) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery = "Select * From Category c where c.type_id = '" + typeId+"'";
+        String selectQuery = "Select * From Category c where c.type_id = '" + typeId+"' order by c.relevance desc";
 
         ArrayList<Category> categories = new ArrayList<Category>();
 
@@ -31,11 +31,13 @@ public class CategoryRepo {
             do {
                 Category category;
                 String id, name, picture;
+                int relevance;
 
                 id = cursor.getString(cursor.getColumnIndex("id"));
                 name = cursor.getString(cursor.getColumnIndex("name"));
+                relevance = Integer.parseInt(cursor.getString(cursor.getColumnIndex("relevance")));
                 picture = cursor.getString(cursor.getColumnIndex("pictureUrl"));
-                category = new Category(id, name, picture, typeId);
+                category = new Category(id, name, relevance, picture, typeId);
 
                 categories.add(category);
 

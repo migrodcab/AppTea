@@ -20,7 +20,7 @@ public class ItemRepo {
 
     public ArrayList<Item> getItemsByCategoryId(String categoryId) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery = "Select * From Item i where i.category_id = '" + categoryId+"'";
+        String selectQuery = "Select * From Item i where i.category_id = '" + categoryId+"' order by i.relevance desc";
 
         ArrayList<Item> items = new ArrayList<Item>();
 
@@ -30,11 +30,13 @@ public class ItemRepo {
             do {
                 Item item;
                 String id, name, picture;
+                int relevance;
 
                 id = cursor.getString(cursor.getColumnIndex("id"));
                 name = cursor.getString(cursor.getColumnIndex("name"));
+                relevance = Integer.parseInt(cursor.getString(cursor.getColumnIndex("relevance")));
                 picture = cursor.getString(cursor.getColumnIndex("pictureUrl"));
-                item = new Item(id, name, picture, categoryId);
+                item = new Item(id, name, relevance, picture, categoryId);
 
                 items.add(item);
 
